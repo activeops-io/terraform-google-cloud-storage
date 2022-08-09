@@ -126,6 +126,7 @@ resource "google_storage_bucket" "buckets" {
         days_since_custom_time     = lookup(lifecycle_rule.value.condition, "days_since_custom_time", null)
         days_since_noncurrent_time = lookup(lifecycle_rule.value.condition, "days_since_noncurrent_time", null)
         noncurrent_time_before     = lookup(lifecycle_rule.value.condition, "noncurrent_time_before", null)
+        matches_prefix             = contains(keys(lifecycle_rule.value.condition), "matches_prefix") ? split(",", lifecycle_rule.value.condition["matches_prefix"]) : null
       }
     }
   }
